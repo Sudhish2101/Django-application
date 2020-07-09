@@ -8,11 +8,11 @@ class User(models.Model):
     def __str__(self):
         return self.real_name
         
-    @property
-    def activity_periods(self):
-        return self.activityperiod_set.all()
+    # @property
+    # def activity_periods(self):
+    #     return self.activityperiod_set.all()
 
 class ActivityPeriod(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default='DEFAULT VALUE')
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    user = models.ForeignKey(User, related_name='activity_periods', on_delete=models.CASCADE, default='DEFAULT VALUE')
+    start_time = models.CharField(max_length=64)
+    end_time = models.CharField(max_length=64)
